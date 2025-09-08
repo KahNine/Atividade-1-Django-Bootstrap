@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo(a)!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+        .header a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            margin-left: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .header a:hover {
+            background-color: #e9e9e9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #1a1a1a;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .carousel-nav button {
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .carousel-nav button:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="{% url 'perfil' %}">Perfil</a>
+        <a href="{% url 'logout' %}">Sair</a>
+        <a href="{% url 'listar_pessoas' %}">lista de pessoas</a>
+    </div>
+
+    <div class="container">
+        <h1>Bem-vindo(a)!</h1>
+        
+        <div class="carousel-container">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="{% static 'blog/img/carrossel_1.jpg' %}" alt="baby">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'blog/img/carrossel_2.jpg' %}" alt="sla">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'blog/img/carrossel_3.jpg' %}" alt="Dyags">
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button id="prevBtn">&lt;</button>
+                <button id="nextBtn">&gt;</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const carouselInner = document.querySelector('.carousel-inner');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex++;
+            if (currentIndex > carouselInner.children.length - 1) {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = carouselInner.children.length - 1;
+            }
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+
+</body>
+</html>

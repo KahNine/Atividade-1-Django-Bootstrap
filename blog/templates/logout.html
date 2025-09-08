@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sair da Conta</title>
+    <link rel="stylesheet" href="{% static 'blog/logout.css' %}" />
+</head>
+<body>
+
+    <div class="logout-container">
+        <h1>Tem certeza que deseja sair?</h1>
+        <p>Você será desconectado da sua conta.</p>
+        <div class="button-group">
+            <button class="btn btn-logout">Sair</button>
+            <a href="#" class="btn btn-cancel">Cancelar</a>
+        </div>
+    </div>
+
+</body>
+</html>

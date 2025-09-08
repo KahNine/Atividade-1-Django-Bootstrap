@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pessoas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .info-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-4">Lista de Pessoas Cadastradas</h1>
+    
+    {% if pessoas %}
+        {% for pessoa in pessoas %}
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ pessoa.Nome }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="info-item"><strong>CPF:</strong> {{ pessoa.CPF }}</div>
+                    <div class="info-item"><strong>E-mail:</strong> {{ pessoa.Email }}</div>
+                    <div class="info-item"><strong>Telefone:</strong> {{ pessoa.Telefone }}</div>
+                    <div class="info-item"><strong>Data de Nascimento:</strong> {{ pessoa.Data_de_nascimento }}</div>
+                    <div class="info-item"><strong>RG:</strong> {{ pessoa.RG }}</div>
+                    <div class="info-item"><strong>Endereço:</strong> {{ pessoa.Endereco }}</div>
+                    <div class="info-item"><strong>Bairro:</strong> {{ pessoa.Bairro }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            Nenhuma pessoa cadastrada.
+        </div>
+    {% endif %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
